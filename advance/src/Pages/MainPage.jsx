@@ -238,7 +238,7 @@ function MainPage() {
                 transition-all duration-500 ease-out
                 hover:bg-[length:100%_100%] hover:text-white"
               >
-                Contact Us
+                Contact Us 1
               </button>
             </div>
 
