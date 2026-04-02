@@ -1,5 +1,6 @@
 import Logo from "../assets/Logo.png";
-import Homepic from "../assets/Home.png";
+import HomeBg from "../assets/HomeBg.jpg";
+import Homepc from "../assets/Home.png";
 
 import Icon from "../assets/Facebook.svg";
 import Icon2 from "../assets/Instagram.png";
@@ -70,7 +71,7 @@ function MainPage() {
   return (
     <div id="body">
       {/* HOME */}
-      <header className="top-0 sticky top-0 w-full bg-slate-950/70 backdrop-blur-md z-50 py-4">
+      <header className="top-0 sticky top-0 w-full bg-black backdrop-blur-md z-50 py-4">
         <div className="px-5">
           <div className="flex justify-between px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-48">
             {/* LOGO */}
@@ -187,7 +188,7 @@ function MainPage() {
                     scrollToSection(item.id);
                     setMobileMenuOpen(false);
                   }}
-                  className="text-white text-lg cursor-pointer hover:text-red-500 transition-colors duration-200"
+                  className="text-white text-lg font-sans-serif cursor-pointer hover:text-red-500 transition-colors duration-200"
                 >
                   {item.name}
                 </span>
@@ -216,7 +217,7 @@ function MainPage() {
                 Design-Driven Sales,
               </h1>
 
-              <h2 className="text-2xl md:text-4xl font-semibold text-gray-400">
+              <h2 className="text-2xl text-red-500 md:text-4xl font-semibold text-gray-400">
                 Elevated Experiences
               </h2>
 
@@ -232,7 +233,7 @@ function MainPage() {
               </div>
 
               <button
-                className="mt-10 h-12 px-6 rounded-xl border border-red-500 text-red-400 
+                className="mt-10 mb-5 h-12 px-6 rounded-xl border border-red-500 text-red-400 
                 bg-gradient-to-r from-red-400 to-red-600 
                 bg-[length:0%_100%] bg-left bg-no-repeat
                 transition-all duration-500 ease-out
@@ -243,7 +244,7 @@ function MainPage() {
             </div>
 
             <div className="hidden lg:flex justify-center">
-              <img src={Homepic} className="w-64 h-auto rounded-md" />
+              {/* <img src="" className="w-64 h-150 rounded-md" /> */}
             </div>
           </div>
         </section>
@@ -252,8 +253,8 @@ function MainPage() {
       </section>
       <section id="about" className="min-h-screen w-full bg-gray-900 py-30">
         <div className="relative top-30 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-48 gap-10">
-          <div>
-            <img src="/your-image.jpg" className="w-64 h-80 rounded-md" />
+          <div className="flex items-center">
+            <img src={Homepc} className="w-64 h-80 rounded-md" />
           </div>
 
           <div className="max-w-xl">
@@ -290,7 +291,7 @@ function MainPage() {
             </div>
 
             <button
-              className="mt-10 h-12 px-6 rounded-xl border border-red-500 text-red-400 
+              className="mt-10 mb-3 h-12 px-6 rounded-xl border border-red-500 text-red-400 
               bg-gradient-to-r from-red-400 to-red-600 
               bg-[length:0%_100%] bg-left bg-no-repeat
               transition-all duration-500 ease-out
