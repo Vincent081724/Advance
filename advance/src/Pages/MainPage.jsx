@@ -171,7 +171,7 @@ function MainPage() {
         {/* MOBILE MENU */}
         {mobileMenuOpen && (
           <div
-            className={`fixed top-2 inset-0 z-40 bg-slate-950 md:hidden overflow-y-auto transition-opacity duration-300 ${
+            className={`fixed top-2 inset-0 z-40 bg-black md:hidden overflow-y-auto transition-opacity duration-300 ${
               mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
           >
