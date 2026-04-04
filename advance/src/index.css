@@ -18,19 +18,15 @@
   }
 }
 
-h1 {
-  font-size: 38px;
-}
 #home,
 #about {
   font-family: sans-serif;
   font-weight: bold;
 }
-
 p {
   font-weight: lighter;
   font-family: sans-serif;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: medium;
+  font-size: 21px;
 }

@@ -73,7 +73,7 @@ function MainPage() {
       {/* HOME */}
       <header className="top-0 sticky top-0 w-full bg-black backdrop-blur-md z-50 py-4">
         <div className="px-5">
-          <div className="flex justify-between px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-48">
+          <div className="flex justify-between px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68">
             {/* LOGO */}
 
             <div className="w-20 h-20 shrink-0">
@@ -100,7 +100,7 @@ function MainPage() {
                       scrollToSection(item.id);
                       setActive(item.id);
                     }}
-                    className="relative mx-3 cursor-pointer text-white transition-colors duration-200 group"
+                    className="relative mx-3 cursor-pointer font-sans font-light text-white transition-colors duration-200 group"
                   >
                     {/* Text */}
                     <span
@@ -124,7 +124,7 @@ function MainPage() {
               </div>
 
               {/* ICONS */}
-              <div className="hidden md:flex items-center shrink-0 gap-3 pl-3">
+              <div className="hidden lg:flex items-center shrink-0 gap-3 pl-3">
                 {navLogo.map((item) => (
                   <div
                     key={item.id}
@@ -211,13 +211,13 @@ function MainPage() {
 
         {/* CONTENT */}
         <section id="home" className="absolute top-0 min-h-screen pt-30 pb-20">
-          <div className="relative top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1  px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-48 items-center gap-10 ">
+          <div className="relative top-5 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1  px-5 md:px-10 md:mx-18 lg:mx-28  xl:mx-48 2xl:mx-68 items-center gap-10 ">
             <div className="px-3 max-w-xl">
-              <h1 className="text-3xl md:text-5xl font-bold my-2 py-3">
+              <h1 className="text-4xl md:text-5xl font-semibold my-2 py-3">
                 Design-Driven Sales,
               </h1>
 
-              <h2 className="text-2xl text-red-500 md:text-4xl font-semibold text-gray-400">
+              <h2 className="text-4xl text-red-500 md:text-5xl font-semibold text-gray-400">
                 Elevated Experiences
               </h2>
 
@@ -233,7 +233,7 @@ function MainPage() {
               </div>
 
               <button
-                className="mt-10 mb-5 h-12 px-6 rounded-xl border border-red-500 text-red-400 
+                className="mt-10 mb-5 px-6 h-12 w-[300px] md:w-[150px] lg:w-[150px] xl:w-[150px] rounded-xl border border-red-500 text-red-400 
                 bg-gradient-to-r from-red-400 to-red-600 
                 bg-[length:0%_100%] bg-left bg-no-repeat
                 transition-all duration-500 ease-out
@@ -251,18 +251,20 @@ function MainPage() {
 
         {/* ABOUT */}
       </section>
-      <section id="about" className="min-h-screen w-full bg-gray-900 py-30">
-        <div className="relative top-30 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-48 gap-10">
+      <section id="about" className="min-h-screen w-full bg-[#0D0C0B] py-30">
+        <div className="relative top-30 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28  xl:mx-48 2xl:mx-68 gap-10">
           <div className="flex items-center">
-            <img src={Homepc} className="w-64 h-80 rounded-md" />
+            <div className=" border-20 rounded-xl border-gray-600 w-85 h-110">
+              <img src={Homepc} className="w-full h-full rounded-xl" />
+            </div>
           </div>
 
           <div className="max-w-xl">
-            <h2 className="text-base font-simebold">
+            <h2 className="text-base font-light text-gray-400">
               Mastering Design Experience
             </h2>
 
-            <h1 className="text-2xl md:text-4xl font-semibold">
+            <h1 className="text-5xl font-semibold my-2">
               About <span className="text-red-500">Me</span>
             </h1>
 
@@ -291,7 +293,7 @@ function MainPage() {
             </div>
 
             <button
-              className="mt-10 mb-3 h-12 px-6 rounded-xl border border-red-500 text-red-400 
+              className="mt-10 mb-3 h-12 px-6 w-[300px] md:w-[150px] lg:w-[150px] xl:w-[150px]  rounded-xl border border-red-500 text-red-400 
               bg-gradient-to-r from-red-400 to-red-600 
               bg-[length:0%_100%] bg-left bg-no-repeat
               transition-all duration-500 ease-out
