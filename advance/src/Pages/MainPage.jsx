@@ -1,24 +1,95 @@
 import Logo from "../assets/Logo.png";
-import HomeBg from "../assets/HomeBg.jpg";
+import HomeBgRight from "../assets/HomeBgRight.png";
+
 import Homepc from "../assets/Home.png";
+import ServiceIcon1 from "../assets/ServiceIcon.png";
 
 import Icon from "../assets/Facebook.svg";
 import Icon2 from "../assets/Instagram.png";
 import Icon3 from "../assets/Youtube.png";
 import Icon4 from "../assets/Twitter.png";
 
+import certificate0 from "../assets/certificateVL.png";
+import certificate1 from "../assets/certificateVL1.png";
+import certificate2 from "../assets/certificateVL2.png";
+import certificate3 from "../assets/certificateVL3.png";
+
 import "../index.css";
 
-import { Home, Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
+function RevealParagraphs({ paragraphs, className = "", button = false }) {
+  const ref = useRef(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShow(true);
+        }
+      },
+      { threshold: 0.2 },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      <div
+        className={`mt-4 space-y-4 text-gray-300 leading-relaxed ${className}`}
+      >
+        {paragraphs.map((text, index) => (
+          <p
+            key={index}
+            className={`transition-all duration-700 ease-out ${
+              show
+                ? "translate-y-0 opacity-100 blur-0"
+                : "translate-y-6 opacity-0 blur-sm"
+            }`}
+            style={{
+              transitionDelay: `${index * 180}ms`,
+            }}
+          >
+            {text}
+          </p>
+        ))}
+      </div>
+
+      {button && (
+        <button
+          className={`mt-10 mb-3 h-12 px-6 w-[300px] md:w-[150px] lg:w-[150px] xl:w-[150px] rounded-xl border border-red-500 text-white 
+          bg-gradient-to-r from-red-400 to-red-600 
+          bg-[length:0%_100%] bg-left bg-no-repeat
+          transition-all duration-300 ease-out
+          hover:bg-[length:100%_100%] hover:text-black ${
+            show ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+          style={{
+            transitionDelay: `${paragraphs.length * 180}ms`,
+          }}
+        >
+          Contact Us
+        </button>
+      )}
+    </div>
+  );
+}
 
 function MainPage() {
   const [mobileMenuOpen, setmobileMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [activeIcon, setActiveIcon] = useState(null);
 
-  // 🔒 Prevent background scroll
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [mobileMenuOpen]);
 
   const navLinks = [
@@ -36,7 +107,6 @@ function MainPage() {
     { id: "4", name: Icon4, AltLog: "Twitter" },
   ];
 
-  // ✅ Scroll function
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
@@ -46,41 +116,37 @@ function MainPage() {
     }
   };
 
-  // ✅ Scroll spy
   useEffect(() => {
-    const handleScroll = () => {
-      navLinks.forEach((link) => {
-        const section = document.getElementById(link.id);
-        if (section) {
-          const top = section.offsetTop - 120;
-          const bottom = top + section.offsetHeight;
+    const sections = document.querySelectorAll("section[id]");
 
-          if (window.scrollY >= top && window.scrollY < bottom) {
-            setActive(link.id);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
           }
-        }
-      });
-    };
+        });
+      },
+      {
+        threshold: 0.6, // 60% visible = active
+      },
+    );
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
-
-  const [activeIcon, setActiveIcon] = useState(null);
 
   return (
     <div id="body">
-      {/* HOME */}
-      <header className="top-0 sticky top-0 w-full bg-black backdrop-blur-md z-50 py-4">
+      <header className="sticky top-0 w-full bg-black backdrop-blur-md z-50 py-4">
         <div className="px-5">
           <div className="flex justify-between px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68">
-            {/* LOGO */}
-
             <div className="w-20 h-20 shrink-0">
               <img
                 src={Logo}
                 alt="Logo"
-                className="w-15 h-20"
+                className="w-15 h-20 cursor-pointer"
                 onClick={() => {
                   const homeSection = document.getElementById("home");
                   if (homeSection) {
@@ -90,7 +156,6 @@ function MainPage() {
               />
             </div>
 
-            {/* NAV */}
             <div className="flex items-center">
               <div className="hidden md:flex items-center pl-8">
                 {navLinks.map((item) => (
@@ -102,7 +167,6 @@ function MainPage() {
                     }}
                     className="relative mx-3 cursor-pointer font-sans font-light text-white transition-colors duration-200 group"
                   >
-                    {/* Text */}
                     <span
                       className={`transition-colors duration-200 ${
                         active === item.id
@@ -113,7 +177,6 @@ function MainPage() {
                       {item.name}
                     </span>
 
-                    {/* Animated underline */}
                     <span
                       className={`absolute left-0 -bottom-1 h-[2px] bg-red-500 transition-all duration-300 ${
                         active === item.id ? "w-full" : "w-0 group-hover:w-full"
@@ -123,7 +186,6 @@ function MainPage() {
                 ))}
               </div>
 
-              {/* ICONS */}
               <div className="hidden lg:flex items-center shrink-0 gap-3 pl-3">
                 {navLogo.map((item) => (
                   <div
@@ -140,7 +202,6 @@ function MainPage() {
                           : "scale-100 group-hover:scale-110"
                       }`}
                     />
-                    {/* Underline animation */}
                     <span
                       className={`absolute left-0 -bottom-1 h-[2px] bg-red-500 transition-all duration-300 ${
                         activeIcon === item.id
@@ -153,7 +214,6 @@ function MainPage() {
               </div>
             </div>
 
-            {/* MOBILE BUTTON */}
             <button
               className="md:hidden px-3 text-gray-300"
               onClick={() => setmobileMenuOpen((prev) => !prev)}
@@ -167,8 +227,15 @@ function MainPage() {
           </div>
         </div>
       </header>
+
       <section className="min-h-screen w-full bg-transparent">
-        {/* MOBILE MENU */}
+        <div className="absolute top-28 right-30 h-screen hidden xl:block">
+          <img
+            src={HomeBgRight}
+            alt=""
+            className="h-full w-auto object-contain"
+          />
+        </div>
         {mobileMenuOpen && (
           <div
             className={`fixed top-2 inset-0 z-40 bg-black md:hidden overflow-y-auto transition-opacity duration-300 ${
@@ -180,13 +247,12 @@ function MainPage() {
                 mobileMenuOpen ? "translate-y-0" : "-translate-y-10"
               }`}
             >
-              {/* Menu Links */}
               {navLinks.map((item) => (
                 <span
                   key={item.id}
                   onClick={() => {
                     scrollToSection(item.id);
-                    setMobileMenuOpen(false);
+                    setmobileMenuOpen(false);
                   }}
                   className="text-white text-lg font-sans-serif cursor-pointer hover:text-red-500 transition-colors duration-200"
                 >
@@ -194,7 +260,6 @@ function MainPage() {
                 </span>
               ))}
 
-              {/* Icons */}
               <div className="flex gap-4 pt-4 pb-3">
                 {navLogo.map((item) => (
                   <img
@@ -209,9 +274,11 @@ function MainPage() {
           </div>
         )}
 
-        {/* CONTENT */}
-        <section id="home" className="absolute top-0 min-h-screen pt-30 pb-20">
-          <div className="relative top-5 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1  px-5 md:px-10 md:mx-18 lg:mx-28  xl:mx-48 2xl:mx-68 items-center gap-10 ">
+        <section
+          id="home"
+          className="absolute top-0 min-h-screen pt-30 pb-20 w-full bg-cover bg-center"
+        >
+          <div className="relative top-5 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 items-center gap-10">
             <div className="px-3 max-w-xl">
               <h1 className="text-4xl md:text-5xl font-semibold my-2 py-3">
                 Design-Driven Sales,
@@ -221,41 +288,26 @@ function MainPage() {
                 Elevated Experiences
               </h2>
 
-              {/* ✅ PARAGRAPH FIX */}
-              <div className="mt-4 space-y-4 text-gray-300 leading-relaxed">
-                <p>
-                  Transform your vision into a refined digital experience. I
-                  take the time to understand your needs and go beyond
-                  expectations to deliver with precision—never settling for
-                  anything less than excellence. Let’s connect and craft
-                  something remarkable.
-                </p>
-              </div>
-
-              <button
-                className="mt-10 mb-5 px-6 h-12 w-[300px] md:w-[150px] lg:w-[150px] xl:w-[150px] rounded-xl border border-red-500 text-red-400 
-                bg-gradient-to-r from-red-400 to-red-600 
-                bg-[length:0%_100%] bg-left bg-no-repeat
-                transition-all duration-500 ease-out
-                hover:bg-[length:100%_100%] hover:text-white"
-              >
-                Contact Us
-              </button>
-            </div>
-
-            <div className="hidden lg:flex justify-center">
-              {/* <img src="" className="w-64 h-150 rounded-md" /> */}
+              <RevealParagraphs
+                paragraphs={[
+                  "Transform your vision into a refined digital experience. I take the time to understand your needs and go beyond expectations to deliver with precision—never settling for anything less than excellence. Let’s connect and craft something remarkable.",
+                ]}
+                button={true}
+              />
             </div>
           </div>
         </section>
-
-        {/* ABOUT */}
       </section>
+
       <section id="about" className="min-h-screen w-full bg-[#0D0C0B] py-30">
-        <div className="relative top-30 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28  xl:mx-48 2xl:mx-68 gap-10">
+        <div className="relative top-20 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 gap-10">
           <div className="flex items-center">
-            <div className=" border-20 rounded-xl border-gray-600 w-85 h-110">
-              <img src={Homepc} className="w-full h-full rounded-xl" />
+            <div className="border-20 rounded-xl border-gray-600 w-85 h-110">
+              <img
+                src={Homepc}
+                alt="About"
+                className="w-full h-full rounded-xl"
+              />
             </div>
           </div>
 
@@ -268,39 +320,164 @@ function MainPage() {
               About <span className="text-red-500">Me</span>
             </h1>
 
-            {/* ✅ PARAGRAPH FIX */}
-            <div className="mt-4 space-y-4 text-gray-300 leading-relaxed">
-              <p>
-                With over a decade of experience in the design industry, I bring
-                clarity, strategy, and creativity to the evolving landscape of
-                UI/UX, graphic, and web design, helping turn concepts into
-                impactful and meaningful digital solutions.
-              </p>
+            <RevealParagraphs
+              paragraphs={[
+                "With over a decade of experience in the design industry, I bring clarity, strategy, and creativity to the evolving landscape of UI/UX, graphic, and web design, helping turn concepts into impactful and meaningful digital solutions.",
+                "My journey began with a passion for crafting visually stunning and intuitive interfaces, and it has grown into a relentless pursuit of perfection in every pixel, driven by a commitment to both aesthetics and seamless user experience.",
+                "In today’s rapidly evolving digital world, I’ve continuously refined my skills to adapt, innovate, and anticipate emerging trends, ensuring your projects not only stay ahead of the curve but also resonate with users on every level.",
+              ]}
+              button={true}
+            />
+          </div>
+        </div>
+      </section>
 
-              <p>
-                My journey began with a passion for crafting visually stunning
-                and intuitive interfaces, and it has grown into a relentless
-                pursuit of perfection in every pixel, driven by a commitment to
-                both aesthetics and seamless user experience.
-              </p>
+      <section id="services" className="min-h-screen w-full bg-black py-30">
+        <div className="relative top-20 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 gap-10">
+          <RevealParagraphs
+            paragraphs={[
+              <div className="flex items-center px-3">
+                <div className="h-full px-3">
+                  <div>
+                    <h2 className="text-[#232323] text-2xl font-semibold">
+                      Your Vision, My Design
+                    </h2>
+                    <h1 className="text-5xl font-bold">
+                      My <span className="text-red-500">Services</span>
+                    </h1>
+                    <p>
+                      Step into a realm where possibilities abound, guided by my
+                      expertise and passion. With a deep well of knowledge and
+                      creativity at my disposal, I offer you a spectrum of
+                      Services designed to elevate your digital presence.
+                    </p>
+                  </div>
+                </div>
+              </div>,
+            ]}
+            button={true}
+          />
+          <div className="max-w-xl px-2">
+            <RevealParagraphs
+              paragraphs={[
+                <div>
+                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                    <img
+                      src={ServiceIcon1}
+                      alt="Service Icon"
+                      className="w-16 h-16 object-contain shrink-0"
+                    />
+                    <div className="flex flex-col">
+                      <h2 className="mb-2 text-2xl font-light">UI/UX Design</h2>
+                      <span className="text-base">
+                        User interfaces and experiences that not only captivate
+                        but also ensure seamless interaction.
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                    <img
+                      src={ServiceIcon1}
+                      alt="Service Icon"
+                      className="w-16 h-16 object-contain shrink-0"
+                    />
+                    <div className="flex flex-col">
+                      <h2 className="mb-2 text-2xl font-light">
+                        Graphic Design
+                      </h2>
+                      <span className="text-base">
+                        Create concepts into impactful designs that resonate
+                        with your audience.
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                    <img
+                      src={ServiceIcon1}
+                      alt="Service Icon"
+                      className="w-16 h-16 object-contain shrink-0"
+                    />
+                    <div className="flex flex-col">
+                      <h2 className="mb-2 text-2xl font-light">Web Design</h2>
+                      <span className="text-base">
+                        Build responsive, high-performance websites that
+                        function flawlessly across devices, ensuring a flawless
+                        user journey.
+                      </span>
+                    </div>
+                  </div>
 
-              <p>
-                In today’s rapidly evolving digital world, I’ve continuously
-                refined my skills to adapt, innovate, and anticipate emerging
-                trends, ensuring your projects not only stay ahead of the curve
-                but also resonate with users on every level.
-              </p>
-            </div>
-
-            <button
-              className="mt-10 mb-3 h-12 px-6 w-[300px] md:w-[150px] lg:w-[150px] xl:w-[150px]  rounded-xl border border-red-500 text-red-400 
-              bg-gradient-to-r from-red-400 to-red-600 
-              bg-[length:0%_100%] bg-left bg-no-repeat
-              transition-all duration-500 ease-out
-              hover:bg-[length:100%_100%] hover:text-white"
-            >
-              Contact Us
-            </button>
+                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                    <img
+                      src={ServiceIcon1}
+                      alt="Service Icon"
+                      className="w-16 h-16 object-contain shrink-0"
+                    />
+                    <div className="flex flex-col">
+                      <h2 className="mb-2 text-2xl font-light">
+                        Branding Design
+                      </h2>
+                      <span className="text-base">
+                        Crafting a unique identity that is essential in today's
+                        competitive landscape.
+                      </span>
+                    </div>
+                  </div>
+                </div>,
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+      <section id="certificate" className="min-h-screen w-full bg-black py-30">
+        <div className="relative top-20 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 gap-10">
+          <RevealParagraphs
+            paragraphs={[
+              <div className="flex items-center">
+                <div className="h-full">
+                  <div>
+                    <h2 className="text-[#232323] text-2xl font-semibold">
+                      Your Vision, My Design
+                    </h2>
+                    <h1 className="text-5xl font-bold text-red-500">
+                      Certifications, <span>Tools</span>
+                    </h1>
+                    <p>
+                      Achieving excellence in the world of design requires
+                      continuous learning and adaptation. My commitment to
+                      staying at the forefront of the industry is demonstrated
+                      through my certifications and my ability to tailor my
+                      experience to your unique needs.
+                    </p>
+                    <p>
+                      My journey is marked by my dedication to professional
+                      growth. I hold certifications, genuine designing tools and
+                      methodologies, ensuring that I can leverage the most
+                      cutting-edge techniques/tools for any creative projects.
+                    </p>
+                  </div>
+                </div>
+              </div>,
+            ]}
+            button={true}
+          />
+          <div className="flex items-center max-w-xl px-2">
+            <RevealParagraphs
+              paragraphs={[
+                <div className=" grid grid-cols-2">
+                  <div className="flex items-center">
+                    <img src={certificate0} alt="" />
+                  </div>
+                  <div className="flex items-center">
+                    <img src={certificate1} alt="" />
+                  </div>
+                  <div className="flex items-center">
+                    <img src={certificate2} alt="" />
+                  </div>
+                  <img src={certificate3} alt="" />
+                </div>,
+              ]}
+            />
           </div>
         </div>
       </section>
