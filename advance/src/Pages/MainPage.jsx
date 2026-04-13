@@ -279,7 +279,7 @@ function MainPage() {
           className="absolute top-0 min-h-screen pt-30 pb-20 w-full bg-cover bg-center"
         >
           <div className="relative top-5 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 items-center gap-10">
-            <div className="px-3 max-w-xl">
+            <div className="px-5  max-w-xl">
               <h1 className="text-4xl md:text-5xl font-semibold my-2 py-3">
                 Design-Driven Sales,
               </h1>
@@ -301,8 +301,8 @@ function MainPage() {
 
       <section id="about" className="min-h-screen w-full bg-[#0D0C0B] py-30">
         <div className="relative top-20 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 gap-10">
-          <div className="flex items-center">
-            <div className="border-20 rounded-xl border-gray-600 w-85 h-110">
+          <div className="flex items-center px-5">
+            <div className="border-20 rounded-xl border-gray-600 w-85 h-110 ">
               <img
                 src={Homepc}
                 alt="About"
@@ -311,7 +311,7 @@ function MainPage() {
             </div>
           </div>
 
-          <div className="max-w-xl">
+          <div className="max-w-xl px-5">
             <h2 className="text-base font-light text-gray-400">
               Mastering Design Experience
             </h2>
@@ -333,35 +333,35 @@ function MainPage() {
       </section>
 
       <section id="services" className="min-h-screen w-full bg-black py-30">
-        <div className="relative top-20 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 gap-10">
-          <RevealParagraphs
-            paragraphs={[
-              <div className="flex items-center px-3">
-                <div className="h-full px-3">
-                  <div>
-                    <h2 className="text-[#232323] text-2xl font-semibold">
-                      Your Vision, My Design
-                    </h2>
-                    <h1 className="text-5xl font-bold">
-                      My <span className="text-red-500">Services</span>
-                    </h1>
+        <div className="relative top-5 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 items-center gap-10">
+          <div className="px-5  max-w-xl">
+            <div className="h-full ">
+              <div>
+                <h2 className="text-[#232323] text-2xl font-semibold">
+                  Your Vision, My Design
+                </h2>
+                <h1 className="text-5xl font-bold">
+                  My <span className="text-red-500">Services</span>
+                </h1>
+                <RevealParagraphs
+                  paragraphs={[
                     <p>
                       Step into a realm where possibilities abound, guided by my
                       expertise and passion. With a deep well of knowledge and
                       creativity at my disposal, I offer you a spectrum of
                       Services designed to elevate your digital presence.
-                    </p>
-                  </div>
-                </div>
-              </div>,
-            ]}
-            button={true}
-          />
-          <div className="max-w-xl px-2">
+                    </p>,
+                  ]}
+                  button={true}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="max-w-xl px-5 sm:px-10">
             <RevealParagraphs
               paragraphs={[
                 <div>
-                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                  <div className="flex flex-col sm:flex-row items-start h-auto  gap-1  py-4 my-4  border-b border-[#232323] gap-4">
                     <img
                       src={ServiceIcon1}
                       alt="Service Icon"
@@ -375,7 +375,7 @@ function MainPage() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                  <div className="flex flex-col sm:flex-row items-start h-auto gap-1  py-4  my-4 border-b border-[#232323] gap-4">
                     <img
                       src={ServiceIcon1}
                       alt="Service Icon"
@@ -391,7 +391,7 @@ function MainPage() {
                       </span>
                     </div>
                   </div>
-                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                  <div className="flex flex-col sm:flex-row items-start h-auto gap-1  py-4 my-4 border-b border-[#232323] gap-4">
                     <img
                       src={ServiceIcon1}
                       alt="Service Icon"
@@ -407,7 +407,7 @@ function MainPage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-start h-40 gap-1  py-4 border-b border-[#232323] gap-4">
+                  <div className="flex flex-col sm:flex-row items-start h-auto gap-1  py-4 my-4 border-b border-[#232323] gap-4">
                     <img
                       src={ServiceIcon1}
                       alt="Service Icon"
@@ -431,37 +431,41 @@ function MainPage() {
       </section>
       <section id="certificate" className="min-h-screen w-full bg-black py-30">
         <div className="relative top-20 grid sm:grid-cols-2 px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 gap-10">
-          <RevealParagraphs
-            paragraphs={[
-              <div className="flex items-center">
-                <div className="h-full">
-                  <div>
-                    <h2 className="text-[#232323] text-2xl font-semibold">
-                      Your Vision, My Design
-                    </h2>
-                    <h1 className="text-5xl font-bold text-red-500">
-                      Certifications, <span>Tools</span>
-                    </h1>
-                    <p>
-                      Achieving excellence in the world of design requires
-                      continuous learning and adaptation. My commitment to
-                      staying at the forefront of the industry is demonstrated
-                      through my certifications and my ability to tailor my
-                      experience to your unique needs.
-                    </p>
-                    <p>
-                      My journey is marked by my dedication to professional
-                      growth. I hold certifications, genuine designing tools and
-                      methodologies, ensuring that I can leverage the most
-                      cutting-edge techniques/tools for any creative projects.
-                    </p>
-                  </div>
-                </div>
-              </div>,
-            ]}
-            button={true}
-          />
-          <div className="flex items-center max-w-xl px-2">
+          <div className="flex items-center px-5">
+            <div className="h-full">
+              <div>
+                <h2 className="text-[#232323] text-2xl font-semibold">
+                  Your Vision, My Design
+                </h2>
+                <h1 className="text-5xl font-bold text-red-500">
+                  Certifications, <span>Tools</span>
+                </h1>
+                <RevealParagraphs
+                  paragraphs={[
+                    <div>
+                      {" "}
+                      <p>
+                        Achieving excellence in the world of design requires
+                        continuous learning and adaptation. My commitment to
+                        staying at the forefront of the industry is demonstrated
+                        through my certifications and my ability to tailor my
+                        experience to your unique needs.
+                      </p>
+                      <p>
+                        My journey is marked by my dedication to professional
+                        growth. I hold certifications, genuine designing tools
+                        and methodologies, ensuring that I can leverage the most
+                        cutting-edge techniques/tools for any creative projects.
+                      </p>
+                    </div>,
+                  ]}
+                  button={true}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center max-w-xl px-5">
             <RevealParagraphs
               paragraphs={[
                 <div className=" grid grid-cols-2">
