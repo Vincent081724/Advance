@@ -61,8 +61,24 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
       </div>
 
       {button && (
-        <button
-          className={`mt-10 mb-3 h-15 px-6 w-[300px]  md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
+        <div className="grid grid-cols-1 md:grid-cols-2 font-sans">
+          <button
+            className={`bg-blue-700 mt-10 mb-3 gap-5 h-15 px-6 w-[300px] md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
+            shadow-2xl  text-white hover:text-black hover:text-shadow-xl/20
+          bg-gradient-to-r from-blue-400 to-blue-600 
+          bg-[length:0%_100%] bg-left bg-no-repeat
+          transition-all duration-300 ease-out
+          hover:bg-[length:100%_100%] hover:text-black ${
+            show ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+          }`}
+            style={{
+              transitionDelay: `${paragraphs.length * 180}ms`,
+            }}
+          >
+            View My work
+          </button>
+          <button
+            className={`mt-3 md:mt-10 mb-3 h-15 px-6 w-[300px]  md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
             shadow-2xl  text-blue-700 hover:text-white 
           bg-gradient-to-r from-blue-400 to-blue-600 
           bg-[length:0%_100%] bg-left bg-no-repeat
@@ -70,12 +86,13 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
           hover:bg-[length:100%_100%] hover:text-black ${
             show ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
-          style={{
-            transitionDelay: `${paragraphs.length * 180}ms`,
-          }}
-        >
-          View My Work
-        </button>
+            style={{
+              transitionDelay: `${paragraphs.length * 180}ms`,
+            }}
+          >
+            Contact Me
+          </button>
+        </div>
       )}
     </div>
   );
@@ -142,7 +159,7 @@ function MainPage() {
     <div id="body">
       <header className="items-center sticky top-0 w-full h-25 bg-[#F2EDED] z-50 py-4 shadow-md">
         <div className="px-5">
-          <div className="flex  justify-between items-center h-full px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-48 2xl:mx-68 ">
+          <div className="flex  justify-between items-center h-full px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 ">
             <div className="flex justify-center w-auto h-full shrink-0 ">
               <img
                 src={Logo}
@@ -230,96 +247,104 @@ function MainPage() {
         </div>
       </header>
 
-      <section className="min-h-screen w-full bg-transparent text-black text-xl font-sans font-normal  ">
-        {mobileMenuOpen && (
-          <div
-            className={`fixed top-2 inset-0 z-40 bg-white md:hidden overflow-y-auto transition-opacity duration-300 ${
-              mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <div
-              className={`pt-24 px-10 flex flex-col space-y-3 transform transition-transform duration-300 ${
-                mobileMenuOpen ? "translate-y-0" : "-translate-y-10"
-              }`}
-            >
-              {navLinks.map((item) => (
-                <span
-                  key={item.id}
-                  onClick={() => {
-                    scrollToSection(item.id);
-                    setmobileMenuOpen(false);
-                  }}
-                  className=" cursor-pointer hover:text-red-500 transition-colors duration-200"
-                >
-                  {item.name}
-                </span>
-              ))}
-
-              <div className="flex gap-4 pt-4 pb-3">
-                {navLogo.map((item) => (
-                  <img
-                    key={item.id}
-                    src={item.name}
-                    alt={item.AltLog}
-                    className="w-5 h-5 transition-transform duration-200 hover:scale-110"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        <section
-          id="home"
-          className="relative min-h-screen w-full  bg-white pb-20"
+      {/* <div className="absolute top-28 right-30 h-screen hidden xl:block">
+          <img
+            src={HomeBgRight}
+            alt=""
+            className="h-full w-auto object-contain"
+          />
+        </div> */}
+      {mobileMenuOpen && (
+        <div
+          className={`fixed top-2 inset-0 z-40 bg-white md:hidden overflow-y-auto transition-opacity duration-300 ${
+            mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
         >
           <div
-            className="relative top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
-           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
+            className={`pt-24 px-10 flex flex-col space-y-3 transform transition-transform duration-300 ${
+              mobileMenuOpen ? "translate-y-0" : "-translate-y-10"
+            }`}
           >
-            <div className="px-5 max-w-xl">
-              <div className="flex justify-center bg-gray-200 w-32 rounded-2xl">
-                <h2 className="text-normal text-blue-700 md:text-xl font-semibold ">
-                  HELLO, I'M
-                </h2>
-              </div>
+            {navLinks.map((item) => (
+              <span
+                key={item.id}
+                onClick={() => {
+                  scrollToSection(item.id);
+                  setmobileMenuOpen(false);
+                }}
+                className="w-fit cursor-pointer px-5 py-3 transition-colors duration-200 hover:rounded-xl hover:bg-blue-200 hover:text-blue-700 hover:shadow-xl/20"
+              >
+                {item.name}
+              </span>
+            ))}
 
-              <h1 className="text-7xl xl:text-5xl font-semibold my-2 py-3 text-shadow-lg/30">
-                Vincent Leyson
-              </h1>
-              <h2 className="text-2xl sm:text-lg">
-                I'm a<span className="text-blue-700"> Frontend Developer </span>
-                |
-              </h2>
-
-              <RevealParagraphs
-                paragraphs={[
-                  "I build scalable, high-performance web applications that deliver exceptional user experience. I take the time to understand your needs and go beyond expectations to deliver with precision—never settling for anything less than excellence. Let’s connect and craft something remarkable.",
-                ]}
-                button={true}
-              />
-            </div>
-            <div className="flex">
-              <img
-                src={VincentBg}
-                alt="Profile"
-                className="w-130 h-110 2xl:h-110 xl:h-110  "
-              />
+            <div className="flex gap-4 pt-4 pb-3">
+              {navLogo.map((item) => (
+                <img
+                  key={item.id}
+                  src={item.name}
+                  alt={item.AltLog}
+                  className="w-5 h-5 transition-transform duration-200 hover:scale-110"
+                />
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      )}
+
+      <section
+        id="home"
+        className="relative min-h-screen w-full  bg-white pb-20 border-1"
+      >
+        <div
+          className="relative  sm:top-0 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
+           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
+        >
+          <div className="px-5 max-w-xl">
+            <div className="flex justify-center bg-gray-200 w-32 rounded-2xl">
+              <h2 className="text-normal text-blue-700 md:text-xl font-semibold ">
+                HELLO, I'M
+              </h2>
+            </div>
+
+            <h1 className="text-7xl xl:text-5xl font-semibold my-2 py-3 text-shadow-lg/30">
+              Vincent Leyson
+            </h1>
+            <h2 className="text-2xl sm:text-lg">
+              I'm a<span className="text-blue-700"> Frontend Developer </span>|
+            </h2>
+
+            <RevealParagraphs
+              paragraphs={[
+                "I build scalable, high-performance web applications that deliver exceptional user experience. I take the time to understand your needs and go beyond expectations to deliver with precision—never settling for anything less than excellence. Let’s connect and craft something remarkable.",
+              ]}
+              button={true}
+            />
+          </div>
+          <div className="flex">
+            <img
+              src={VincentBg}
+              alt="Profile"
+              className="w-130 h-110  xl:h-full 2xl:w-full 2xl:h-full "
+            />
+          </div>
+        </div>
       </section>
 
       <section
         id="about"
-        className="relative min-h-screen w-full  bg-white py-20"
+        className="relative min-h-screen w-full  bg-white py-20 border-1"
       >
         <div
-          className="relative top-0 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
+          className="relative  sm:top-0 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
            pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
         >
-          <div className="flex px-5 h-110 ">
-            <img src={About1} alt="About Picture" className="w-full" />
+          <div className="flex">
+            <img
+              src={About1}
+              alt="About Picture"
+              className="w-130 h-110  xl:h-full 2xl:w-full 2xl:h-full "
+            />
           </div>
 
           <div className="px-5 w-full font-sans">
@@ -332,7 +357,7 @@ function MainPage() {
             </h1>
             <RevealParagraphs
               paragraphs={[
-                "I'm a Frontend developer with a passion  for building scalable Web applications. I specialize  in moderm  UI/UX framework and love turning idead into reality",
+                "I'm a Frontend developer with a passion  for building scalable Web responsive applications. I specialize  in moderm  UI/UX framework and love turning ideas into reality",
               ]}
             />
           </div>
