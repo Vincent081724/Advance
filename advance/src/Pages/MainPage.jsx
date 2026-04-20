@@ -3,6 +3,9 @@ import Logo from "../assets/Logo.png";
 import About1 from "../assets/About1.png";
 import VincentBg from "../assets/VincentBg.png";
 import ServiceIcon1 from "../assets/ServiceIcon.png";
+import Browserservecies from "../assets/Browserservices.svg";
+import Mobileservices from "../assets/Mobileservices.svg";
+import Editservices from "../assets/Editservices.svg";
 
 import Icon from "../assets/Facebook.svg";
 import Icon2 from "../assets/Instagram.png";
@@ -297,7 +300,7 @@ function MainPage() {
         className="relative min-h-screen w-full  bg-white pb-20 border-1"
       >
         <div
-          className="relative  sm:top-0 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
+          className="relative top-25 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
            pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
         >
           <div className="px-5 max-w-xl">
@@ -348,11 +351,11 @@ function MainPage() {
           </div>
 
           <div className="px-5 w-full font-sans">
-            <h2 className="text-lg text-blue-700 md:text-xl font-bold">
+            <h2 className="text-shadow-lg/10 text-lg text-blue-700 md:text-xl font-bold">
               About Me
             </h2>
             <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 text-shadow-lg/30">
-              Passionate Developer Who{" "}
+              Passionate Developer Who
               <span className="text-blue-700">Love to Code</span>
             </h1>
             <RevealParagraphs
@@ -363,36 +366,89 @@ function MainPage() {
           </div>
         </div>
       </section>
-
-      <section id="services" className="min-h-screen w-full bg-black py-30">
+      <section
+        id="services"
+        className="relative min-h-screen w-full  bg-white py-20 border-1"
+      >
         <div
-          className="relative top-0 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
-           px-10 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
+          className="relative top-0 md:top-20 lg:top-30 xl:top-0 grid
+           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58  gap-10 font-sans"
         >
-          <div className="px-5  max-w-xl">
-            <div className="h-full ">
-              <div>
-                <h2 className="text-[#232323] text-2xl font-semibold">
-                  Your Vision, My Design
-                </h2>
-                <h1 className="text-5xl font-bold">
-                  My <span className="text-red-500">Services</span>
-                </h1>
+          <div className="w-full px-5 text-center font-sans">
+            <div className="justify-center">
+              <h2 className="text-shadow-lg/10 text-lg text-blue-700 md:text-xl font-bold">
+                Services
+              </h2>
+              <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 text-shadow-lg/10">
+                What I Do
+              </h1>
+              <h2>
+                I provide high-quality service to help businesses grow and
+                success
+              </h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 xl:grid-cols-2 md:grid-cols-3 gap-10">
+            <div className="h-full w-110 2xl:w-90 xl:w-80 shadow-xl/20 rounded-2xl px-3 py-5 mx-5">
+              <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
+                <img
+                  src={Browserservecies}
+                  alt="Services"
+                  className="w-10 h-10"
+                />
+              </div>
+              <div className="my-10 font-sans">
+                <h1 className="text-2xl font-semibold">Web Development</h1>
                 <RevealParagraphs
                   paragraphs={[
-                    <p>
-                      Step into a realm where possibilities abound, guided by my
-                      expertise and passion. With a deep well of knowledge and
-                      creativity at my disposal, I offer you a spectrum of
-                      Services designed to elevate your digital presence.
+                    <p className="py-5">
+                      I Build responsive and performance website using modern
+                      technology
                     </p>,
                   ]}
-                  button={true}
+                ></RevealParagraphs>
+              </div>
+            </div>
+
+            <div className="h-full w-110 2xl:w-90 xl:w-80 shadow-xl/20 rounded-2xl px-3 py-5 mx-5">
+              <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
+                <img
+                  src={Mobileservices}
+                  alt="Services"
+                  className="w-10 h-10"
                 />
+              </div>
+              <div className="my-10 ">
+                <h1 className="text-2xl font-semibold">Mobile Development</h1>
+                <RevealParagraphs
+                  paragraphs={[
+                    <p className="py-5">
+                      I create cross-platform mobile applications that provide
+                      great user experiences.
+                    </p>,
+                  ]}
+                ></RevealParagraphs>
+              </div>
+            </div>
+            <div className="h-full w-110 2xl:w-90 xl:w-80 shadow-xl/20 rounded-2xl px-3 py-5 mx-5">
+              <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
+                <img src={Editservices} alt="Services" className="w-10 h-10" />
+              </div>
+              <div className="my-10 font-sans">
+                <h1 className="text-2xl font-semibold">UI/UX Design</h1>
+                <RevealParagraphs
+                  paragraphs={[
+                    <p className="py-5">
+                      I design clean and intuitive user interfaces that enhance
+                      user experience.
+                    </p>,
+                  ]}
+                ></RevealParagraphs>
               </div>
             </div>
           </div>
-          <div className="max-w-xl px-5 sm:px-10">
+
+          {/* <div className="max-w-xl px-5 sm:px-10">
             <RevealParagraphs
               paragraphs={[
                 <div>
@@ -461,7 +517,7 @@ function MainPage() {
                 </div>,
               ]}
             />
-          </div>
+          </div> */}
         </div>
       </section>
       <section id="certificate" className="min-h-screen w-full bg-black py-30">
@@ -472,33 +528,7 @@ function MainPage() {
           <div className="flex items-center px-5">
             <div className="h-full">
               <div>
-                <h2 className="text-[#232323] text-2xl font-semibold">
-                  Your Vision, My Design
-                </h2>
-                <h1 className="text-5xl font-bold text-red-500">
-                  Certifications, <span>Tools</span>
-                </h1>
-                <RevealParagraphs
-                  paragraphs={[
-                    <div>
-                      {" "}
-                      <p>
-                        Achieving excellence in the world of design requires
-                        continuous learning and adaptation. My commitment to
-                        staying at the forefront of the industry is demonstrated
-                        through my certifications and my ability to tailor my
-                        experience to your unique needs.
-                      </p>
-                      <p>
-                        My journey is marked by my dedication to professional
-                        growth. I hold certifications, genuine designing tools
-                        and methodologies, ensuring that I can leverage the most
-                        cutting-edge techniques/tools for any creative projects.
-                      </p>
-                    </div>,
-                  ]}
-                  button={true}
-                />
+                <img src="" alt="" />
               </div>
             </div>
           </div>
