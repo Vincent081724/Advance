@@ -328,7 +328,7 @@ function MainPage() {
             <img
               src={VincentBg}
               alt="Profile"
-              className="w-130 h-110  xl:h-full 2xl:w-full 2xl:h-full "
+              className="w-fit h-110  xl:h-full 2xl:w-full 2xl:h-full "
             />
           </div>
         </div>
@@ -346,7 +346,7 @@ function MainPage() {
             <img
               src={About1}
               alt="About Picture"
-              className="w-130 h-110  xl:h-full 2xl:w-full 2xl:h-full "
+              className="w-fit h-110  xl:h-full 2xl:w-full 2xl:h-full "
             />
           </div>
 
@@ -372,7 +372,7 @@ function MainPage() {
       >
         <div
           className="relative top-0 md:top-20 lg:top-30 xl:top-0 grid
-           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58  gap-10 font-sans"
+           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 gap-3 font-sans my-3"
         >
           <div className="w-full px-5 text-center font-sans">
             <div className="justify-center">
@@ -382,14 +382,14 @@ function MainPage() {
               <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 text-shadow-lg/10">
                 What I Do
               </h1>
-              <h2>
+              <h2 className="text-lg">
                 I provide high-quality service to help businesses grow and
                 success
               </h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 xl:grid-cols-2 md:grid-cols-3 gap-10">
-            <div className="h-full w-110 2xl:w-90 xl:w-80 shadow-xl/20 rounded-2xl px-3 py-5 mx-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 sm:gap-5 my-10">
+            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-3 py-5 mx-5 xl:mx-2 my-3">
               <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
                 <img
                   src={Browserservecies}
@@ -410,7 +410,7 @@ function MainPage() {
               </div>
             </div>
 
-            <div className="h-full w-110 2xl:w-90 xl:w-80 shadow-xl/20 rounded-2xl px-3 py-5 mx-5">
+            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-3 py-5 mx-5 xl:mx-2 my-3">
               <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
                 <img
                   src={Mobileservices}
@@ -430,7 +430,8 @@ function MainPage() {
                 ></RevealParagraphs>
               </div>
             </div>
-            <div className="h-full w-110 2xl:w-90 xl:w-80 shadow-xl/20 rounded-2xl px-3 py-5 mx-5">
+
+            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-3 py-5 mx-5 xl:mx-2 my-3">
               <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
                 <img src={Editservices} alt="Services" className="w-10 h-10" />
               </div>
@@ -447,77 +448,6 @@ function MainPage() {
               </div>
             </div>
           </div>
-
-          {/* <div className="max-w-xl px-5 sm:px-10">
-            <RevealParagraphs
-              paragraphs={[
-                <div>
-                  <div className="flex flex-col sm:flex-row items-start h-auto  gap-1  py-4 my-4  border-b border-[#232323] gap-4">
-                    <img
-                      src={ServiceIcon1}
-                      alt="Service Icon"
-                      className="w-16 h-16 object-contain shrink-0"
-                    />
-                    <div className="flex flex-col">
-                      <h2 className="mb-2 text-2xl font-light">UI/UX Design</h2>
-                      <span className="text-base">
-                        User interfaces and experiences that not only captivate
-                        but also ensure seamless interaction.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row items-start h-auto gap-1  py-4  my-4 border-b border-[#232323] gap-4">
-                    <img
-                      src={ServiceIcon1}
-                      alt="Service Icon"
-                      className="w-16 h-16 object-contain shrink-0"
-                    />
-                    <div className="flex flex-col">
-                      <h2 className="mb-2 text-2xl font-light">
-                        Graphic Design
-                      </h2>
-                      <span className="text-base">
-                        Create concepts into impactful designs that resonate
-                        with your audience.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row items-start h-auto gap-1  py-4 my-4 border-b border-[#232323] gap-4">
-                    <img
-                      src={ServiceIcon1}
-                      alt="Service Icon"
-                      className="w-16 h-16 object-contain shrink-0"
-                    />
-                    <div className="flex flex-col">
-                      <h2 className="mb-2 text-2xl font-light">Web Design</h2>
-                      <span className="text-base">
-                        Build responsive, high-performance websites that
-                        function flawlessly across devices, ensuring a flawless
-                        user journey.
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-start h-auto gap-1  py-4 my-4 border-b border-[#232323] gap-4">
-                    <img
-                      src={ServiceIcon1}
-                      alt="Service Icon"
-                      className="w-16 h-16 object-contain shrink-0"
-                    />
-                    <div className="flex flex-col">
-                      <h2 className="mb-2 text-2xl font-light">
-                        Branding Design
-                      </h2>
-                      <span className="text-base">
-                        Crafting a unique identity that is essential in today's
-                        competitive landscape.
-                      </span>
-                    </div>
-                  </div>
-                </div>,
-              ]}
-            />
-          </div> */}
         </div>
       </section>
       <section id="certificate" className="min-h-screen w-full bg-black py-30">
