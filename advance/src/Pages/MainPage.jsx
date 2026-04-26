@@ -148,20 +148,77 @@ function PortfolioSlider() {
   const [flyingImage, setFlyingImage] = useState(null);
   const [thumbStartIndex, setThumbStartIndex] = useState(0);
   const [heroScaleKey, setHeroScaleKey] = useState(0);
+  const [isPortfolioVisible, setIsPortfolioVisible] = useState(false);
+
+  const sectionRef = useRef(null);
+  const isPortfolioVisibleRef = useRef(false);
 
   const heroRef = useRef(null);
   const thumbRefs = useRef([]);
   const autoRef = useRef(null);
+  const timeoutRefs = useRef([]);
 
   const visibleThumbCount = 4;
 
+  const clearAllTimers = () => {
+    clearInterval(autoRef.current);
+    timeoutRefs.current.forEach((timer) => clearTimeout(timer));
+    timeoutRefs.current = [];
+  };
+
+  const addTimer = (callback, delay) => {
+    const timer = setTimeout(() => {
+      callback();
+      timeoutRefs.current = timeoutRefs.current.filter(
+        (item) => item !== timer,
+      );
+    }, delay);
+
+    timeoutRefs.current.push(timer);
+  };
+
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting && entry.intersectionRatio >= 0.55;
+        setIsPortfolioVisible(visible);
+        isPortfolioVisibleRef.current = visible;
+      },
+      { threshold: [0, 0.55, 1] },
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    isPortfolioVisibleRef.current = isPortfolioVisible;
+
+    if (!isPortfolioVisible) {
+      clearAllTimers();
+      setFlyingImage(null);
+      setIncomingIndex(null);
+    }
+  }, [isPortfolioVisible]);
+
+  useEffect(() => {
+    clearInterval(autoRef.current);
+
+    if (!isPortfolioVisible) return;
+
     autoRef.current = setInterval(() => {
-      handleNext(true);
+      if (isPortfolioVisibleRef.current) {
+        handleNext(true);
+      }
     }, 5000);
 
     return () => clearInterval(autoRef.current);
-  }, [activeIndex]);
+  }, [activeIndex, isPortfolioVisible]);
+
+  useEffect(() => {
+    return () => clearAllTimers();
+  }, []);
 
   const resetAuto = () => {
     clearInterval(autoRef.current);
@@ -172,9 +229,13 @@ function PortfolioSlider() {
       const index = (thumbStartIndex + i) % slides.length;
       return { ...slides[index], originalIndex: index };
     });
-  }, [thumbStartIndex]);
+  }, [thumbStartIndex, slides.length]);
 
   const startFlyAnimation = (targetIndex, sourceIndex) => {
+    if (!isPortfolioVisibleRef.current) return;
+
+    clearAllTimers();
+
     const thumbEl = thumbRefs.current[sourceIndex];
     const heroEl = heroRef.current;
 
@@ -208,16 +269,19 @@ function PortfolioSlider() {
 
     setIncomingIndex(targetIndex);
 
-    setTimeout(() => {
+    addTimer(() => {
+      if (!isPortfolioVisibleRef.current) return;
       setActiveIndex(targetIndex);
       setHeroScaleKey((prev) => prev + 1);
     }, 620);
 
-    setTimeout(() => {
+    addTimer(() => {
+      if (!isPortfolioVisibleRef.current) return;
       setTextIndex(targetIndex);
     }, 720);
 
-    setTimeout(() => {
+    addTimer(() => {
+      if (!isPortfolioVisibleRef.current) return;
       setIncomingIndex(null);
       setFlyingImage(null);
     }, 1100);
@@ -231,6 +295,7 @@ function PortfolioSlider() {
   };
 
   const handleNext = (isAuto = false) => {
+    if (isAuto && !isPortfolioVisibleRef.current) return;
     if (!isAuto) resetAuto();
     const next = (activeIndex + 1) % slides.length;
     startFlyAnimation(next, next);
@@ -251,7 +316,8 @@ function PortfolioSlider() {
 
   return (
     <section
-      id="portfolio"
+      ref={sectionRef}
+      id="portfolio-slider"
       className="relative min-h-screen w-full overflow-hidden bg-black text-white"
     >
       <div ref={heroRef} className="absolute inset-0 z-0 overflow-hidden">
@@ -389,25 +455,29 @@ function PortfolioSlider() {
                 },
               }}
             >
-              {visibleThumbs.map((slide, i) => {
+              {visibleThumbs.map((slide) => {
                 const isActive = slide.originalIndex === activeIndex;
                 const isIncoming = slide.originalIndex === incomingIndex;
 
                 return (
                   <motion.button
                     layout
-                    key={`${slide.id}-${thumbStartIndex}-${i}`}
+                    key={`${slide.id}-${slide.originalIndex}`}
                     ref={(el) => {
                       if (el) thumbRefs.current[slide.originalIndex] = el;
                     }}
                     onClick={() => handleThumbClick(slide.originalIndex)}
-                    whileHover={{ y: -4, scale: 1.02 }}
+                    whileHover={{ y: -4, scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.35 }}
-                    className={`group relative h-28 w-20 shrink-0 overflow-hidden rounded-2xl border md:h-32 md:w-24 ${
-                      isActive
-                        ? "border-white shadow-2xl"
-                        : "border-white/20 opacity-100"
+                    transition={{
+                      layout: {
+                        duration: 0.65,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                      duration: 0.35,
+                    }}
+                    className={`group relative h-28 w-20 shrink-0 overflow-hidden rounded-2xl md:h-32 md:w-24 ${
+                      isActive ? "opacity-100" : "opacity-80 hover:opacity-100"
                     }`}
                   >
                     <motion.img
@@ -415,31 +485,23 @@ function PortfolioSlider() {
                       alt={slide.highlight}
                       className="h-full w-full object-cover"
                       animate={{
-                        scale: isActive ? 1.04 : isIncoming ? 1.02 : 1,
+                        scale: isActive ? 1.06 : isIncoming ? 1.03 : 1,
                       }}
                       transition={{
-                        duration: 0.5,
+                        duration: 0.6,
                         ease: [0.22, 1, 0.36, 1],
                       }}
                     />
-                    <div
-                      className={`absolute inset-0 ${
-                        isActive
-                          ? "bg-black/10"
-                          : "bg-black/30 group-hover:bg-black/20"
-                      }`}
+
+                    <motion.div
+                      className="absolute inset-0 bg-black/25 group-hover:bg-black/10"
+                      animate={{
+                        backgroundColor: isActive
+                          ? "rgba(0,0,0,0.08)"
+                          : "rgba(0,0,0,0.28)",
+                      }}
+                      transition={{ duration: 0.4 }}
                     />
-                    {isActive && (
-                      <motion.div
-                        layoutId="active-thumb-ring"
-                        className="absolute inset-0 rounded-2xl ring-2 ring-white"
-                        transition={{
-                          type: "spring",
-                          stiffness: 220,
-                          damping: 24,
-                        }}
-                      />
-                    )}
                   </motion.button>
                 );
               })}
@@ -449,13 +511,15 @@ function PortfolioSlider() {
       </div>
 
       <div className="absolute bottom-0 left-0 z-50 h-1 w-full bg-white/10">
-        <motion.div
-          key={activeIndex}
-          className="h-full bg-white"
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 5, ease: "linear" }}
-        />
+        {isPortfolioVisible && (
+          <motion.div
+            key={activeIndex}
+            className="h-full bg-white"
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 5, ease: "linear" }}
+          />
+        )}
       </div>
     </section>
   );
