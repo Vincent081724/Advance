@@ -12,10 +12,10 @@ import Icon2 from "../assets/Instagram.png";
 import Icon3 from "../assets/Youtube.png";
 import Icon4 from "../assets/Twitter.png";
 
-import portfolio1 from "../assets/About1.png";
-import portfolio2 from "../assets/VincentBg.png";
-import portfolio3 from "../assets/About1.png";
-import portfolio4 from "../assets/VincentBg.png";
+import portfolio1 from "../assets/BgPort.png";
+import portfolio2 from "../assets/Bg2.png";
+import portfolio3 from "../assets/Bg2.png";
+import portfolio4 from "../assets/BgPort.png";
 
 import certificate0 from "../assets/certificateVL.png";
 import certificate1 from "../assets/certificateVL1.png";
@@ -318,23 +318,24 @@ function PortfolioSlider() {
     <section
       ref={sectionRef}
       id="portfolio-slider"
-      className="relative min-h-screen w-full overflow-hidden bg-black text-white"
+      className="relative min-h-screen w-full overflow-hidden bg-transparent text-black"
     >
-      <div ref={heroRef} className="absolute inset-0 z-0 overflow-hidden">
+      <div
+        ref={heroRef}
+        className="absolute inset-0 z-0 overflow-hidden bg-transparent"
+      >
         <motion.img
           key={`${currentSlide.id}-${heroScaleKey}`}
           src={currentSlide.image}
           alt={currentSlide.highlight}
-          className="h-full w-full object-cover"
-          initial={{ scale: 1.06 }}
-          animate={{ scale: 1 }}
+          className="h-full w-full object-cover object-center"
+          initial={{ scale: 1.02, opacity: 0.98 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{
-            duration: 1.4,
+            duration: 1,
             ease: [0.22, 1, 0.36, 1],
           }}
         />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
       </div>
 
       <AnimatePresence>
@@ -343,7 +344,7 @@ function PortfolioSlider() {
             key={`${flyingImage.image}-${incomingIndex}`}
             src={flyingImage.image}
             alt=""
-            className="pointer-events-none fixed z-[35] object-cover shadow-2xl will-change-transform"
+            className="pointer-events-none fixed z-[35] object-cover object-center will-change-transform"
             initial={{
               left: flyingImage.start.x,
               top: flyingImage.start.y,
@@ -360,35 +361,35 @@ function PortfolioSlider() {
               height: flyingImage.end.height,
               borderRadius: flyingImage.end.borderRadius,
               opacity: 1,
-              scale: 1.015,
+              scale: 1,
             }}
             exit={{ opacity: 0 }}
             transition={{
-              duration: 1.05,
-              ease: [0.19, 1, 0.22, 1],
+              duration: 0.95,
+              ease: [0.22, 1, 0.36, 1],
             }}
           />
         )}
       </AnimatePresence>
 
-      <div className="absolute left-1/2 top-6 z-30 -translate-x-1/2 text-[10px] uppercase tracking-[0.35em] text-white/70 md:text-xs"></div>
+      <div className="absolute left-1/2 top-6 z-30 -translate-x-1/2 text-[10px] uppercase tracking-[0.35em] text-black/70 md:text-xs"></div>
 
       <div className="relative z-30 flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentText.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-xl font-sans"
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-xl bg-transparent font-sans"
             >
               <motion.h2
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="text-lg font-bold text-blue-400 md:text-xl"
+                className="text-lg font-bold text-black md:text-xl"
               >
                 Portfolio
               </motion.h2>
@@ -397,18 +398,18 @@ function PortfolioSlider() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.42, delay: 0.04 }}
-                className="my-2 py-3 text-5xl font-semibold leading-tight text-white md:text-6xl"
+                className="my-2 py-3 text-5xl font-semibold leading-tight text-blue-700 md:text-6xl"
               >
                 {currentText.title}
                 <br />
-                <span className="text-blue-400">{currentText.highlight}</span>
+                <span className="text-black">{currentText.highlight}</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.38, delay: 0.1 }}
-                className="mt-3 max-w-md text-sm leading-6 text-white/80 md:text-base"
+                className="mt-3 max-w-md text-sm leading-6 text-black/80 md:text-base"
               >
                 {currentText.description}
               </motion.p>
@@ -418,7 +419,7 @@ function PortfolioSlider() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.16 }}
-                className="mt-6 rounded-2xl border border-white/70 bg-white px-6 py-3 text-sm font-medium uppercase tracking-widest text-black transition hover:bg-transparent hover:text-white"
+                className="mt-6 rounded-2xl border border-black bg-white px-6 py-3 text-sm font-medium uppercase tracking-widest text-black transition hover:bg-black hover:text-white"
               >
                 Next Project
               </motion.button>
@@ -432,13 +433,13 @@ function PortfolioSlider() {
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrev}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/30 text-xl text-white backdrop-blur transition hover:bg-white hover:text-black"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-black/30 bg-white/50 text-xl text-black backdrop-blur transition hover:bg-black hover:text-white"
             >
               ‹
             </button>
             <button
               onClick={() => handleNext(false)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/30 text-xl text-white backdrop-blur transition hover:bg-white hover:text-black"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-black/30 bg-white/50 text-xl text-black backdrop-blur transition hover:bg-black hover:text-white"
             >
               ›
             </button>
@@ -510,11 +511,11 @@ function PortfolioSlider() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 z-50 h-1 w-full bg-white/10">
+      <div className="absolute bottom-0 left-0 z-50 h-1 w-full bg-black/10">
         {isPortfolioVisible && (
           <motion.div
             key={activeIndex}
-            className="h-full bg-white"
+            className="h-full bg-black"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 5, ease: "linear" }}
@@ -875,7 +876,7 @@ function MainPage() {
         </div>
       </section>
 
-      <section id="portfolio">
+      <section id="portfolio" className="text-black">
         <PortfolioSlider />
       </section>
       <section id="certificate" className="min-h-screen w-full bg-black py-30">
