@@ -72,7 +72,7 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
       {button && (
         <div className="grid grid-cols-1 md:grid-cols-2 font-sans">
           <button
-            className={`bg-blue-700 mt-10 mb-3 gap-5 h-15 px-6 w-[300px] md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
+            className={`bg-blue-700 mt-6 mb-3 gap-5 h-15 px-6 w-[300px] md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
             shadow-2xl  text-white hover:text-black hover:text-shadow-xl/20
           bg-gradient-to-r from-blue-400 to-blue-600 
           bg-[length:0%_100%] bg-left bg-no-repeat
@@ -87,7 +87,7 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
             View My work
           </button>
           <button
-            className={`mt-3 md:mt-10 mb-3 h-15 px-6 w-[300px]  md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
+            className={`mt-3 md:mt-6 mb-3 h-15 px-6 w-[300px]  md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
             shadow-2xl  text-blue-700 hover:text-white 
           bg-gradient-to-r from-blue-400 to-blue-600 
           bg-[length:0%_100%] bg-left bg-no-repeat
@@ -398,7 +398,7 @@ function PortfolioSlider() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.42, delay: 0.04 }}
-                className="my-2 py-3 text-5xl font-semibold leading-tight text-blue-700 md:text-6xl"
+                className="my-2 py-3 text-5xl font-semibold leading-tight text-blue-700 md:text-6xl w-130"
               >
                 {currentText.title}
                 <br />
@@ -747,6 +747,37 @@ function MainPage() {
                 "I build scalable, high-performance web applications that deliver exceptional user experience. I take the time to understand your needs and go beyond expectations to deliver with precision—never settling for anything less than excellence. Let’s connect and craft something remarkable.",
               ]}
               button={true}
+            />
+            <RevealParagraphs
+              paragraphs={[
+                <p className="flex items-center gap-3">
+                  Follow me on:
+                  {navLogo.map((item) => (
+                    <div
+                      key={item.id}
+                      className="relative group cursor-pointer"
+                      onClick={() => setActiveIcon(item.id)}
+                    >
+                      <img
+                        src={item.name}
+                        alt={item.AltLog}
+                        className={`w-5 h-5 transition-transform duration-200 ${
+                          activeIcon === item.id
+                            ? "scale-110"
+                            : "scale-100 group-hover:scale-110"
+                        }`}
+                      />
+                      <span
+                        className={`absolute left-0 -bottom-1 h-[2px] bg-blue-700 transition-all duration-300 ${
+                          activeIcon === item.id
+                            ? "w-full"
+                            : "w-0 group-hover:w-full"
+                        }`}
+                      ></span>
+                    </div>
+                  ))}
+                </p>,
+              ]}
             />
           </div>
           <div className="flex">
