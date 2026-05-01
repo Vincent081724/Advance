@@ -13,8 +13,8 @@ import Icon3 from "../assets/Youtube.png";
 import Icon4 from "../assets/Twitter.png";
 
 import portfolio1 from "../assets/BgPort.png";
-import portfolio2 from "../assets/Bg2.png";
-import portfolio3 from "../assets/Bg2.png";
+import portfolio2 from "../assets/Bg3.png";
+import portfolio3 from "../assets/Bg5.png";
 import portfolio4 from "../assets/BgPort.png";
 
 import certificate0 from "../assets/certificateVL.png";
@@ -74,7 +74,7 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
           <button
             className={`bg-blue-700 mt-6 mb-3 gap-5 h-15 px-6 w-[300px] md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
             shadow-2xl  text-white hover:text-black hover:text-shadow-xl/20
-          bg-gradient-to-r from-blue-400 to-blue-600 
+          bg-gradient-to-r from-gray-300 to-gray-300 
           bg-[length:0%_100%] bg-left bg-no-repeat
           transition-all duration-300 ease-out
           hover:bg-[length:100%_100%] hover:text-black ${
@@ -89,7 +89,7 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
           <button
             className={`mt-3 md:mt-6 mb-3 h-15 px-6 w-[300px]  md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
             shadow-2xl  text-blue-700 hover:text-white 
-          bg-gradient-to-r from-blue-400 to-blue-600 
+          bg-gradient-to-r from-blue-700 to-blue-700 
           bg-[length:0%_100%] bg-left bg-no-repeat
           transition-all duration-300 ease-out
           hover:bg-[length:100%_100%] hover:text-black ${
@@ -138,7 +138,7 @@ function PortfolioSlider() {
       highlight: "Build.",
       description:
         "A scalable frontend implementation built with reusable structure, performance, and responsive behavior in mind.",
-      image: portfolio4,
+      image: portfolio2,
     },
   ];
 
@@ -611,8 +611,8 @@ function MainPage() {
                       scrollToSection(item.id);
                       setActive(item.id);
                     }}
-                    className="flex justify-center items-center mx-1 w-20 h-12 px-3 py-4 cursor-pointer bg-gray-200 font-sans font-semibold  transition-colors
-                     duration-200 group shadow-lg/20 border-gray-900 rounded-xl hover:h-16 hover:w-27 hover:text-xl hover-text-shadow-lg/20"
+                    className="flex justify-center items-center mx-1 w-20 h-12 px-3 py-4 cursor-pointer font-sans font-semibold  transition-colors
+                     duration-200 group  hover:h-16 hover:w-27 hover:text-xl hover-text-shadow-lg/20"
                   >
                     <span
                       className={`transition-colors duration-200 ${
