@@ -529,6 +529,8 @@ function PortfolioSlider() {
     </section>
   );
 }
+const [isSending, setIsSending] = useState(false);
+const [popupMessage, setPopupMessage] = useState("");
 
 function MainPage() {
   const [mobileMenuOpen, setmobileMenuOpen] = useState(false);
@@ -539,6 +541,7 @@ function MainPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
+    setPopupMessage("");
 
     const formData = {
       firstName: e.target.firstName.value,
@@ -556,16 +559,14 @@ function MainPage() {
         body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
-
       if (response.ok) {
-        alert("Message sent successfully!");
         e.target.reset();
+        setPopupMessage("Message sent successfully!");
       } else {
-        alert(result.message || "Failed to send message.");
+        setPopupMessage("Failed to send message. Please try again.");
       }
     } catch (error) {
-      alert("Something went wrong. Please try again.");
+      setPopupMessage("Something went wrong. Please try again.");
     } finally {
       setIsSending(false);
     }
@@ -1013,10 +1014,26 @@ function MainPage() {
             <button
               type="submit"
               disabled={isSending}
-              className="w-full mt-4 bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full mt-4 bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition disabled:opacity-60"
             >
               {isSending ? "Sending..." : "Send Message"}
             </button>
+            {popupMessage && (
+              <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40">
+                <div className="w-[90%] max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl">
+                  <h2 className="text-xl font-bold text-blue-700">Notice</h2>
+                  <p className="mt-3 text-gray-700">{popupMessage}</p>
+
+                  <button
+                    type="button"
+                    onClick={() => setPopupMessage("")}
+                    className="mt-5 rounded-xl bg-blue-700 px-6 py-2 text-white hover:bg-blue-800"
+                  >
+                    OK
+                  </button>
+                </div>
+              </div>
+            )}
           </form>
 
           <div className=" max-w-xl px-5">
