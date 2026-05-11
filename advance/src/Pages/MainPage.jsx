@@ -15,12 +15,14 @@ import Icon4 from "../assets/Twitter.png";
 import portfolio1 from "../assets/BgPort.png";
 import portfolio2 from "../assets/Bg3.png";
 import portfolio3 from "../assets/Bg5.png";
-import portfolio4 from "../assets/BgPort.png";
+import portfolio4 from "../assets/Bg2.png";
 
 import certificate0 from "../assets/certificateVL.png";
 import certificate1 from "../assets/certificateVL1.png";
 import certificate2 from "../assets/certificateVL2.png";
 import certificate3 from "../assets/certificateVL3.png";
+
+import Hire from "../assets/HireMe.png";
 
 import "../index.css";
 
@@ -138,7 +140,7 @@ function PortfolioSlider() {
       highlight: "Build.",
       description:
         "A scalable frontend implementation built with reusable structure, performance, and responsive behavior in mind.",
-      image: portfolio2,
+      image: portfolio4,
     },
   ];
 
@@ -419,7 +421,7 @@ function PortfolioSlider() {
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.16 }}
-                className="mt-6 rounded-2xl border border-black bg-white px-6 py-3 text-sm font-medium uppercase tracking-widest text-black transition hover:bg-black hover:text-white"
+                className="mt-6 rounded-2xl border border-black bg-white px-6 py-3 text-sm font-medium uppercase tracking-widest text-black transition hover:bg-blue-700 hover:text-white"
               >
                 Next Project
               </motion.button>
@@ -585,7 +587,7 @@ function MainPage() {
 
   return (
     <div id="body">
-      <header className="items-center sticky top-0 w-full h-25 bg-transparent  z-50 py-4 shadow-md">
+      <header className="items-center sticky top-0 w-full h-25 bg-gray-200  z-50 py-4 shadow-md">
         <div className="px-5">
           <div className="flex  justify-between items-center h-full px-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 ">
             <div className="flex justify-center w-auto h-full shrink-0 ">
@@ -603,7 +605,7 @@ function MainPage() {
             </div>
 
             <div className="flex items-center ">
-              <div className="hidden md:flex items-center pl-8 ">
+              <div className="hidden md:flex items-center pl-8 mr-5">
                 {navLinks.map((item) => (
                   <button
                     key={item.id}
@@ -611,8 +613,8 @@ function MainPage() {
                       scrollToSection(item.id);
                       setActive(item.id);
                     }}
-                    className="flex justify-center items-center mx-1 w-20 h-12 px-3 py-4 cursor-pointer font-sans font-semibold  transition-colors
-                     duration-200 group  hover:h-16 hover:w-27 hover:text-xl hover-text-shadow-lg/20"
+                    className="flex justify-center items-center mx-1 w-20 h-12 px-3 py-4 cursor-pointer font-sans font-light text-xl transition-colors
+                     duration-200 group  hover:h-16 hover:w-27 hover:text-2xl hover:font-semibold hover-text-shadow-lg/20"
                   >
                     <span
                       className={`transition-colors duration-200 ${
@@ -633,8 +635,11 @@ function MainPage() {
                 ))}
               </div>
 
-              <div className="hidden lg:flex shrink-0 gap-3 pl-3 ">
-                {navLogo.map((item) => (
+              <div className="hidden lg:flex shrink-0 gap-3 mx-2">
+                <button className="h-12 w-fit rounded-md shadow-xl/20 px-3 py-2 text-xl text-black font-light bg-blue-700 hover:bg-transparent hover:text-blue-700 group hover:h-16 hover:w-27 hover:text-xl hover:font-semibold hover-text-shadow-lg/20">
+                  Hire Me
+                </button>
+                {/* {navLogo.map((item) => (
                   <div
                     key={item.id}
                     className="relative group cursor-pointer"
@@ -650,14 +655,14 @@ function MainPage() {
                       }`}
                     />
                     <span
-                      className={`absolute left-0 -bottom-1 h-[2px] bg-red-500 transition-all duration-300 ${
+                      className={`absolute left-0 -bottom-1 h-[2px] bg-blue-700 transition-all duration-300 ${
                         activeIcon === item.id
                           ? "w-full"
                           : "w-0 group-hover:w-full"
                       }`}
                     ></span>
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
 
@@ -675,13 +680,6 @@ function MainPage() {
         </div>
       </header>
 
-      {/* <div className="absolute top-28 right-30 h-screen hidden xl:block">
-          <img
-            src={HomeBgRight}
-            alt=""
-            className="h-full w-auto object-contain"
-          />
-        </div> */}
       {mobileMenuOpen && (
         <div
           className={`fixed top-2 inset-0 z-40 bg-white md:hidden overflow-y-auto transition-opacity duration-300 ${
@@ -735,7 +733,7 @@ function MainPage() {
               </h2>
             </div>
 
-            <h1 className="text-7xl xl:text-5xl font-semibold my-2 py-3 text-shadow-lg/30">
+            <h1 className="text-7xl xl:text-5xl font-semibold my-2 py-3">
               Vincent Leyson
             </h1>
             <h2 className="text-2xl sm:text-lg">
@@ -751,7 +749,7 @@ function MainPage() {
             <RevealParagraphs
               paragraphs={[
                 <p className="flex items-center gap-3">
-                  Follow me on:
+                  Follow me on :
                   {navLogo.map((item) => (
                     <div
                       key={item.id}
@@ -807,10 +805,10 @@ function MainPage() {
           </div>
 
           <div className="px-5 w-full font-sans">
-            <h2 className="text-shadow-lg/10 text-lg text-blue-700 md:text-xl font-bold">
+            <h2 className="text-lg text-blue-700 md:text-xl font-bold">
               About Me
             </h2>
-            <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 text-shadow-lg/30">
+            <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 ">
               Passionate Developer Who
               <span className="text-blue-700">Love to Code</span>
             </h1>
@@ -832,10 +830,10 @@ function MainPage() {
         >
           <div className="w-full px-5 text-center font-sans">
             <div className="justify-center">
-              <h2 className="text-shadow-lg/10 text-lg text-blue-700 md:text-xl font-bold">
+              <h2 className=" text-lg text-blue-700 md:text-xl font-bold">
                 Services
               </h2>
-              <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 text-shadow-lg/10">
+              <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 ">
                 What I Do
               </h1>
               <h2 className="text-lg">
@@ -863,6 +861,9 @@ function MainPage() {
                     </p>,
                   ]}
                 ></RevealParagraphs>
+                <h2 className="text-blue-500 font-sans font-semibold text-xl">
+                  Learn more
+                </h2>
               </div>
             </div>
 
@@ -910,33 +911,94 @@ function MainPage() {
       <section id="portfolio" className="text-black">
         <PortfolioSlider />
       </section>
-      <section id="certificate" className="min-h-screen w-full bg-black py-30">
+      <section
+        id="certificate"
+        className="min-h-screen w-full bg-gray-200 py-30"
+      >
         <div
-          className="relative top-0 md:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
+          className="relative top-0 md:top-0 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
            px-10 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
         >
-          <div className="flex items-center px-5">
-            <div className="h-full">
-              <div>
-                <img src="" alt="" />
-              </div>
+          <div className="h-full w-full rounded-2xl bg-white px-5 py-3 my-5">
+            <h2 className="text-lg text-blue-700 font-normal font-sans md:text-2xl font-bold ">
+              Get in touch
+            </h2>
+            <h1 className="text-7xl xl:text-4xl font-semibold my-2 py-3">
+              Let’s Build Something Exceptional Together
+            </h1>
+            <h2 className="text-light text-lg">
+              Looking for a reliable developer to bring your ideas to life?
+              Whether it's a website, web app, or digital solution, DeVL is here
+              to help you create scalable, modern, and user-focused experiences.
+            </h2>
+            <div className="border-t border-gray-200 my-5"></div>
+            <div className="grid grid-cols-2 my-5 gap-3">
+              <h1>First Name</h1> <h1>Last Name</h1>
+              <input
+                type="text"
+                id="name"
+                placeholder="First Name"
+                className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+              <input
+                type="text"
+                id="name"
+                placeholder="Last Name"
+                className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <h1>Email Address</h1>
+            <div className="flex">
+              <input
+                type="text"
+                id="name"
+                placeholder="Email Address"
+                className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <h1>Messege</h1>
+            <div className="flex">
+              <textarea
+                id="message"
+                placeholder="Leave us a Message"
+                className="w-full h-40 px-3 py-3 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+              />
             </div>
           </div>
 
-          <div className="flex items-center max-w-xl px-5">
+          <div className="flex max-w-xl px-5">
             <RevealParagraphs
               paragraphs={[
-                <div className=" grid grid-cols-2">
-                  <div className="flex items-center">
-                    <img src={certificate0} alt="" />
+                <div>
+                  <img src={Hire} alt="" className="rounded-2xl" />
+                  <div className="h-full w-full rounded-2xl bg-white px-5 py-3 my-5">
+                    <div className="h-30 rounded-xl flex item-center bg-gray-50 my-2">
+                      <div className="flex items-center mx-2">
+                        <img
+                          src={Icon2}
+                          alt="Platten Email"
+                          className="h-fit "
+                        />
+                        <div className="mx-2 px-2">
+                          <h1>Email</h1>
+                          <h2>Vincentleysom24@gmail.com</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="h-30 rounded-2xl flex item-center bg-gray-50 my-2">
+                      <div className="flex items-center mx-2">
+                        <img
+                          src={Icon2}
+                          alt="Platten Email"
+                          className="h-fit "
+                        />
+                        <div className="mx-2 px-2">
+                          <h1>Phone</h1>
+                          <h2>(09)-641329781</h2>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center">
-                    <img src={certificate1} alt="" />
-                  </div>
-                  <div className="flex items-center">
-                    <img src={certificate2} alt="" />
-                  </div>
-                  <img src={certificate3} alt="" />
                 </div>,
               ]}
             />
