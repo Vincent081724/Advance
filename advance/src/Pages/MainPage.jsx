@@ -529,14 +529,13 @@ function PortfolioSlider() {
     </section>
   );
 }
-const [isSending, setIsSending] = useState(false);
-const [popupMessage, setPopupMessage] = useState("");
 
 function MainPage() {
   const [mobileMenuOpen, setmobileMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
   const [activeIcon, setActiveIcon] = useState(null);
   const [isSending, setIsSending] = useState(false);
+  const [popupMessage, setPopupMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1001,7 +1000,7 @@ function MainPage() {
                 className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
-            <h1>Messege</h1>
+            <h1>Message</h1>
             <div className="flex">
               <textarea
                 name="message"
@@ -1014,13 +1013,14 @@ function MainPage() {
             <button
               type="submit"
               disabled={isSending}
-              className="w-full mt-4 bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition disabled:opacity-60"
+              className="w-full mt-4 bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isSending ? "Sending..." : "Send Message"}
             </button>
+
             {popupMessage && (
-              <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40">
-                <div className="w-[90%] max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl">
+              <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 px-4">
+                <div className="w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-xl">
                   <h2 className="text-xl font-bold text-blue-700">Notice</h2>
                   <p className="mt-3 text-gray-700">{popupMessage}</p>
 
