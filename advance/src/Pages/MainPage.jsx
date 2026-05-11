@@ -23,6 +23,8 @@ import certificate2 from "../assets/certificateVL2.png";
 import certificate3 from "../assets/certificateVL3.png";
 
 import Hire from "../assets/HireMe.png";
+import Emailicon from "../assets/envelope.svg";
+import Phone from "../assets/telephone.svg";
 
 import "../index.css";
 
@@ -532,6 +534,42 @@ function MainPage() {
   const [mobileMenuOpen, setmobileMenuOpen] = useState(false);
   const [active, setActive] = useState("home");
   const [activeIcon, setActiveIcon] = useState(null);
+  const [isSending, setIsSending] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSending(true);
+
+    const formData = {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Message sent successfully!");
+        e.target.reset();
+      } else {
+        alert(result.message || "Failed to send message.");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
@@ -919,7 +957,10 @@ function MainPage() {
           className="relative top-0 md:top-0 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
            px-10 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
         >
-          <div className="h-full w-full rounded-2xl bg-white px-5 py-3 my-5">
+          <form
+            onSubmit={handleSubmit}
+            className="h-full w-full rounded-2xl bg-white px-5 py-3 my-5"
+          >
             <h2 className="text-lg text-blue-700 font-normal font-sans md:text-2xl font-bold ">
               Get in touch
             </h2>
@@ -936,48 +977,60 @@ function MainPage() {
               <h1>First Name</h1> <h1>Last Name</h1>
               <input
                 type="text"
-                id="name"
+                name="firstName"
                 placeholder="First Name"
+                required
                 className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
               <input
                 type="text"
-                id="name"
+                name="lastName"
                 placeholder="Last Name"
+                required
                 className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <h1>Email Address</h1>
             <div className="flex">
               <input
-                type="text"
-                id="name"
+                type="email"
+                name="email"
                 placeholder="Email Address"
+                required
                 className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <h1>Messege</h1>
             <div className="flex">
               <textarea
-                id="message"
+                name="message"
                 placeholder="Leave us a Message"
+                required
                 className="w-full h-40 px-3 py-3 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
               />
             </div>
-          </div>
 
-          <div className="flex max-w-xl px-5">
+            <button
+              type="submit"
+              disabled={isSending}
+              className="w-full mt-4 bg-blue-700 text-white py-3 rounded-xl font-semibold hover:bg-blue-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {isSending ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+
+          <div className=" max-w-xl px-5">
+            <img src={Hire} alt="" className="rounded-2xl" />
             <RevealParagraphs
               paragraphs={[
                 <div>
-                  <img src={Hire} alt="" className="rounded-2xl" />
                   <div className="h-full w-full rounded-2xl bg-white px-5 py-3 my-5">
                     <div className="h-30 rounded-xl flex item-center bg-gray-50 my-2">
                       <div className="flex items-center mx-2">
                         <img
-                          src={Icon2}
+                          src={Emailicon}
                           alt="Platten Email"
-                          className="h-fit "
+                          className="h-10 w-10 "
                         />
                         <div className="mx-2 px-2">
                           <h1>Email</h1>
@@ -988,9 +1041,9 @@ function MainPage() {
                     <div className="h-30 rounded-2xl flex item-center bg-gray-50 my-2">
                       <div className="flex items-center mx-2">
                         <img
-                          src={Icon2}
+                          src={Phone}
                           alt="Platten Email"
-                          className="h-fit "
+                          className="h-10 w-10 "
                         />
                         <div className="mx-2 px-2">
                           <h1>Phone</h1>
