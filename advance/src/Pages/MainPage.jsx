@@ -1051,7 +1051,7 @@ function MainPage() {
                         />
                         <div className="mx-2 px-2">
                           <h1>Email</h1>
-                          <h2>Vincentleysom24@gmail.com</h2>
+                          <h2>Vincentleyson24@gmail.com</h2>
                         </div>
                       </div>
                     </div>
