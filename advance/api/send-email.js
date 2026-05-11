@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
+    return res.status(405).json({ message: "Method not allowed." });
   }
 
   const { firstName, lastName, email, message } = req.body;
@@ -13,7 +13,9 @@ export default async function handler(req, res) {
 
   try {
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -21,7 +23,7 @@ export default async function handler(req, res) {
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+      from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `New Portfolio Message from ${firstName} ${lastName}`,
@@ -33,11 +35,12 @@ export default async function handler(req, res) {
         <p>${message}</p>
       `,
     });
+
+    return res.status(200).json({ message: "Email sent successfully." });
   } catch (error) {
     console.error("Email error:", error);
     return res.status(500).json({
-      message: "Failed to send email.",
-      error: error.message,
+      message: error.message || "Failed to send email.",
     });
   }
 }

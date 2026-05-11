@@ -542,11 +542,13 @@ function MainPage() {
     setIsSending(true);
     setPopupMessage("");
 
+    const form = e.currentTarget;
+
     const formData = {
-      firstName: e.target.firstName.value,
-      lastName: e.target.lastName.value,
-      email: e.target.email.value,
-      message: e.target.message.value,
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      email: form.email.value,
+      message: form.message.value,
     };
 
     try {
@@ -558,14 +560,18 @@ function MainPage() {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        e.target.reset();
-        setPopupMessage("Message sent successfully!");
-      } else {
-        setPopupMessage("Failed to send message. Please try again.");
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to send message.");
       }
+
+      form.reset();
+      setPopupMessage("Message sent successfully!");
     } catch (error) {
-      setPopupMessage("Something went wrong. Please try again.");
+      setPopupMessage(
+        error.message || "Something went wrong. Please try again.",
+      );
     } finally {
       setIsSending(false);
     }
