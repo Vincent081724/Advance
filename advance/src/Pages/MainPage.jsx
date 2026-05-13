@@ -1,5 +1,7 @@
 import Logo from "../assets/Logo.png";
 
+import Bg from "../assets/MainBG.png";
+
 import About1 from "../assets/About1.png";
 import VincentBg from "../assets/VincentBg.png";
 import ServiceIcon1 from "../assets/ServiceIcon.png";
@@ -17,10 +19,11 @@ import portfolio2 from "../assets/Bg3.png";
 import portfolio3 from "../assets/Bg5.png";
 import portfolio4 from "../assets/Bg2.png";
 
-import certificate0 from "../assets/certificateVL.png";
-import certificate1 from "../assets/certificateVL1.png";
-import certificate2 from "../assets/certificateVL2.png";
-import certificate3 from "../assets/certificateVL3.png";
+import Huaweitalen from "../assets/CertificateHuawei.png";
+// import certificate0 from "../assets/certificateVL.png";
+// import certificate1 from "../assets/certificateVL1.png";
+// import certificate2 from "../assets/certificateVL2.png";
+// import certificate3 from "../assets/certificateVL3.png";
 
 import Hire from "../assets/HireMe.png";
 import Emailicon from "../assets/envelope.svg";
@@ -77,8 +80,8 @@ function RevealParagraphs({ paragraphs, className = "", button = false }) {
         <div className="grid grid-cols-1 md:grid-cols-2 font-sans">
           <button
             className={`bg-blue-700 mt-6 mb-3 gap-5 h-15 px-6 w-[300px] md:w-[200px] lg:w-[200px] xl:w-[200px] rounded-2xl border-1 border-blue-700 
-            shadow-2xl  text-white hover:text-black hover:text-shadow-xl/20
-          bg-gradient-to-r from-gray-300 to-gray-300 
+            shadow-2xl  text-white hover:text-blue-700 hover:text-shadow-xl/20
+          bg-gradient-to-r from-white to-white 
           bg-[length:0%_100%] bg-left bg-no-repeat
           transition-all duration-300 ease-out
           hover:bg-[length:100%_100%] hover:text-black ${
@@ -319,9 +322,8 @@ function PortfolioSlider() {
   const currentText = slides[textIndex];
 
   return (
-    <section
+    <div
       ref={sectionRef}
-      id="portfolio-slider"
       className="relative min-h-screen w-full overflow-hidden bg-transparent text-black"
     >
       <div
@@ -526,7 +528,7 @@ function PortfolioSlider() {
           />
         )}
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -680,7 +682,10 @@ function MainPage() {
               </div>
 
               <div className="hidden lg:flex shrink-0 gap-3 mx-2">
-                <button className="h-12 w-fit rounded-md shadow-xl/20 px-3 py-2 text-xl text-black font-light bg-blue-700 hover:bg-transparent hover:text-blue-700 group hover:h-16 hover:w-27 hover:text-xl hover:font-semibold hover-text-shadow-lg/20">
+                <button
+                  onClick={() => scrollToSection("hireme")}
+                  className="h-12 w-fit rounded-md shadow-xl/20 px-3 py-2 text-xl text-black font-light bg-blue-700 hover:bg-transparent hover:text-blue-700 group hover:h-16 hover:w-27 hover:text-xl hover:font-semibold hover-text-shadow-lg/20"
+                >
                   Hire Me
                 </button>
                 {/* {navLogo.map((item) => (
@@ -764,14 +769,15 @@ function MainPage() {
 
       <section
         id="home"
-        className="relative min-h-screen w-full  bg-white pb-20"
+        style={{ backgroundImage: `url(${Bg})` }}
+        className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat pb-20"
       >
         <div
           className="relative top-25 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
            pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
         >
           <div className="px-5 max-w-xl">
-            <div className="flex justify-center bg-gray-200 w-32 rounded-2xl">
+            <div className="flex bg-gray-200 w-42 rounded-2xl">
               <h2 className="text-normal text-blue-700 md:text-xl font-semibold ">
                 HELLO, I'M
               </h2>
@@ -834,7 +840,7 @@ function MainPage() {
 
       <section
         id="about"
-        className="relative min-h-screen w-full  bg-white py-20 "
+        className="relative min-h-screen w-full  bg-gray-200 py-20 "
       >
         <div
           className="relative  sm:top-0 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
@@ -849,7 +855,7 @@ function MainPage() {
           </div>
 
           <div className="px-5 w-full font-sans">
-            <h2 className="text-lg text-blue-700 md:text-xl font-bold">
+            <h2 className="text-lg text-blue-700 font-normal font-sans md:text-2xl font-bold ">
               About Me
             </h2>
             <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 ">
@@ -866,15 +872,16 @@ function MainPage() {
       </section>
       <section
         id="services"
-        className="relative min-h-screen w-full  bg-white py-20 "
+        style={{ backgroundImage: `url(${Bg})` }}
+        className="relative min-h-screen w-full bg-cover bg-no-repeat pt-24 pb-20"
       >
         <div
-          className="relative top-0 md:top-20 lg:top-30 xl:top-0 grid
+          className="relative  m:top-0 md:top-30 lg:top-30 xl:top-0 grid
            pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 gap-3 font-sans my-3"
         >
           <div className="w-full px-5 text-center font-sans">
             <div className="justify-center">
-              <h2 className=" text-lg text-blue-700 md:text-xl font-bold">
+              <h2 className="text-lg text-blue-700 font-normal font-sans md:text-2xl font-bold ">
                 Services
               </h2>
               <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 ">
@@ -886,8 +893,8 @@ function MainPage() {
               </h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 sm:gap-5 my-10">
-            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-3 py-5 mx-5 xl:mx-2 my-3">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 sm:gap-5 my-8">
+            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-5 py-5 my-3">
               <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
                 <img
                   src={Browserservecies}
@@ -911,7 +918,7 @@ function MainPage() {
               </div>
             </div>
 
-            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-3 py-5 mx-5 xl:mx-2 my-3">
+            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-5 py-5 my-3">
               <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
                 <img
                   src={Mobileservices}
@@ -932,7 +939,7 @@ function MainPage() {
               </div>
             </div>
 
-            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-3 py-5 mx-5 xl:mx-2 my-3">
+            <div className="h-full w-fit shadow-xl/20 rounded-2xl px-5 py-5 my-3">
               <div className="px-3 py-2 h-15 w-15 shadow-xl/10 bg-gray-200 rounded-xl">
                 <img src={Editservices} alt="Services" className="w-10 h-10" />
               </div>
@@ -957,44 +964,85 @@ function MainPage() {
       </section>
       <section
         id="certificate"
-        className="min-h-screen w-full bg-gray-200 py-30"
+        className="relative min-h-screen w-full  bg-gray-200 py-20 "
       >
         <div
-          className="relative top-0 md:top-0 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
-           px-10 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
+          className="relative  sm:top-0 md:top-30 lg:top-30 grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
+           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58 items-center gap-10 font-sans"
+        >
+          <div className="flex">
+            <img
+              src={Huaweitalen}
+              alt="About Picture"
+              className="w-fit h-110  xl:h-full 2xl:w-full 2xl:h-full rounded-2xl shadow-xl/30"
+            />
+          </div>
+
+          <div className="px-5 w-full font-sans">
+            <h2 className="text-lg text-blue-700 font-normal font-sans md:text-2xl font-bold ">
+              Certifications & Achievements
+            </h2>
+            <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 ">
+              Continuous Learning &
+              <span className="text-blue-700">Innovation</span>
+            </h1>
+            <RevealParagraphs
+              paragraphs={[
+                "Industry certifications and academic achievements that reflect my dedication to technology, problem-solving, and digital excellence.",
+                " Huawei Talent Online",
+                "Validated knowledge in AI fundamentals and modern technologies. Recognized for innovation, research excellence, and technology-driven problem-solving.",
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+      <section id="hireme" className="min-h-screen w-full bg-gray-200 py-30">
+        <div
+          className="relative top-0  grid xl:grid-cols-2 sm:grid-cols-1 md:grid-cols-1
+           pl-5 pr-10 py-5 md:px-10 md:mx-18 lg:mx-28 xl:mx-38 2xl:mx-58  gap-10 font-sans"
         >
           <form
             onSubmit={handleSubmit}
-            className="h-full w-full rounded-2xl bg-white px-5 py-3 my-5"
+            className="h-fit w-80 md:w-full  rounded-2xl bg-white px-5 py-3 "
           >
             <h2 className="text-lg text-blue-700 font-normal font-sans md:text-2xl font-bold ">
               Get in touch
             </h2>
-            <h1 className="text-7xl xl:text-4xl font-semibold my-2 py-3">
-              Let’s Build Something Exceptional Together
-            </h1>
-            <h2 className="text-light text-lg">
-              Looking for a reliable developer to bring your ideas to life?
-              Whether it's a website, web app, or digital solution, DeVL is here
-              to help you create scalable, modern, and user-focused experiences.
-            </h2>
+            <div className="w-full md:w-full">
+              <h1 className="text-xl md:text-5xl font-semibold my-2 py-3">
+                Let’s Build Something Exceptional Together
+              </h1>
+              <h2 className="text-light text-lg">
+                Looking for a reliable developer to bring your ideas to life?
+                Whether it's a website, web app, or digital solution, DeVL is
+                here to help you create scalable, modern, and user-focused
+                experiences.
+              </h2>
+            </div>
+
             <div className="border-t border-gray-200 my-5"></div>
-            <div className="grid grid-cols-2 my-5 gap-3">
-              <h1>First Name</h1> <h1>Last Name</h1>
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                required
-                className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                required
-                className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
+            <div className="grid  grid-cols-1 md:grid-cols-2 my-3 gap-3">
+              <div>
+                <h1>First Name</h1>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="First Name"
+                  required
+                  className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <h1>Last Name</h1>
+
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Last Name"
+                  required
+                  className="w-full px-3 py-2 my-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
             </div>
             <h1>Email Address</h1>
             <div className="flex">
@@ -1042,8 +1090,11 @@ function MainPage() {
             )}
           </form>
 
-          <div className=" max-w-xl px-5">
-            <img src={Hire} alt="" className="rounded-2xl" />
+          <div className="w-80 md:w-full">
+            <div className="h-120 w-full">
+              <img src={Hire} alt="" className="rounded-2xl h-120 w-full" />
+            </div>
+
             <RevealParagraphs
               paragraphs={[
                 <div>
@@ -1057,7 +1108,9 @@ function MainPage() {
                         />
                         <div className="mx-2 px-2">
                           <h1>Email</h1>
-                          <h2>Vincentleyson24@gmail.com</h2>
+                          <h2 className="text-base md:text-xl">
+                            Vincentleyson24@gmail.com
+                          </h2>
                         </div>
                       </div>
                     </div>
@@ -1070,7 +1123,9 @@ function MainPage() {
                         />
                         <div className="mx-2 px-2">
                           <h1>Phone</h1>
-                          <h2>(09)-641329781</h2>
+                          <h2 className="text-base md:text-xl">
+                            (09)-641329781
+                          </h2>
                         </div>
                       </div>
                     </div>
