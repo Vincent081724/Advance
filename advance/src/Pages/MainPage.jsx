@@ -934,6 +934,9 @@ function MainPage() {
                       I create cross-platform mobile applications that provide
                       great user experiences.
                     </p>,
+                    <h2 className="text-blue-500 font-sans font-semibold text-xl">
+                      Learn more
+                    </h2>,
                   ]}
                 ></RevealParagraphs>
               </div>
@@ -951,6 +954,9 @@ function MainPage() {
                       I design clean and intuitive user interfaces that enhance
                       user experience.
                     </p>,
+                    <h2 className="text-blue-500 font-sans font-semibold text-xl">
+                      Learn more
+                    </h2>,
                   ]}
                 ></RevealParagraphs>
               </div>
@@ -984,7 +990,7 @@ function MainPage() {
             </h2>
             <h1 className="text-5xl xl:text-6xl font-semibold my-2 py-3 ">
               Continuous Learning &
-              <span className="text-blue-700">Innovation</span>
+              <span className="text-blue-700"> Innovation</span>
             </h1>
             <RevealParagraphs
               paragraphs={[
