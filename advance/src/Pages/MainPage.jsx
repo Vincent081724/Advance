@@ -328,13 +328,13 @@ function PortfolioSlider() {
     >
       <div
         ref={heroRef}
-        className="absolute inset-0 z-0 overflow-hidden bg-transparent"
+        className="absolute inset-0 z-0 overflow-hidden bg-white lg:bg-transparent"
       >
         <motion.img
           key={`${currentSlide.id}-${heroScaleKey}`}
           src={currentSlide.image}
           alt={currentSlide.highlight}
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-contain object-center lg:object-cover"
           initial={{ scale: 1.02, opacity: 0.98 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{
@@ -380,8 +380,8 @@ function PortfolioSlider() {
 
       <div className="absolute left-1/2 top-6 z-30 -translate-x-1/2 text-[10px] uppercase tracking-[0.35em] text-black/70 md:text-xs"></div>
 
-      <div className="relative z-30 flex min-h-screen items-center">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-16">
+      <div className="relative z-30 grid min-h-screen grid-cols-1 items-center pt-24 pb-56 lg:grid-cols-1">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 px-5 sm:px-6 md:px-10 lg:grid-cols-1 lg:px-16">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentText.id}
@@ -389,7 +389,7 @@ function PortfolioSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-xl bg-transparent font-sans"
+              className="hidden w-full max-w-xl bg-transparent font-sans lg:block"
             >
               <motion.h2
                 initial={{ opacity: 0, y: 10 }}
@@ -404,7 +404,7 @@ function PortfolioSlider() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.42, delay: 0.04 }}
-                className="my-2 py-3 text-5xl font-semibold leading-tight text-blue-700 md:text-6xl w-130"
+                className="my-2 w-full max-w-[520px] py-3 text-4xl font-semibold leading-tight text-blue-700 sm:text-5xl md:text-6xl lg:w-full"
               >
                 {currentText.title}
                 <br />
@@ -415,7 +415,7 @@ function PortfolioSlider() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.38, delay: 0.1 }}
-                className="mt-3 max-w-md text-sm leading-6 text-black/80 md:text-base"
+                className="mt-3 w-full max-w-md text-sm leading-6 text-black/80 md:text-base"
               >
                 {currentText.description}
               </motion.p>
@@ -435,7 +435,7 @@ function PortfolioSlider() {
       </div>
 
       <div className="absolute bottom-6 left-0 right-0 z-50">
-        <div className="mx-auto flex w-full max-w-7xl items-end justify-between gap-6 px-6 md:px-10 lg:px-16">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-5 px-5 sm:px-6 md:px-10 lg:flex-row lg:items-end lg:justify-between lg:px-16">
           <div className="flex items-center gap-3">
             <button
               onClick={handlePrev}
@@ -451,7 +451,7 @@ function PortfolioSlider() {
             </button>
           </div>
 
-          <div className="overflow-hidden pb-1">
+          <div className="w-full overflow-x-auto pb-1 lg:w-auto lg:overflow-hidden">
             <motion.div
               layout
               className="flex gap-3"
@@ -483,7 +483,7 @@ function PortfolioSlider() {
                       },
                       duration: 0.35,
                     }}
-                    className={`group relative h-28 w-20 shrink-0 overflow-hidden rounded-2xl md:h-32 md:w-24 ${
+                    className={`group relative h-24 w-[72px] shrink-0 overflow-hidden rounded-2xl sm:h-28 sm:w-20 md:h-32 md:w-24 ${
                       isActive ? "opacity-100" : "opacity-80 hover:opacity-100"
                     }`}
                   >
